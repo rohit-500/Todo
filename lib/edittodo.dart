@@ -49,6 +49,7 @@ class _EditTodoState extends State<EditTodo> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  
                   maxLines: null,
                   decoration: textinputdecor,
                   keyboardType: TextInputType.multiline,

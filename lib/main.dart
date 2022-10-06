@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/firebase_options.dart';
 import 'package:todo/model/model.dart';
@@ -30,6 +31,13 @@ class MyApp extends StatelessWidget {
         value: AuthService().user,
         initialData: null,
         child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: GoogleFonts.urbanistTextTheme(
+              
+              Theme.of(context).textTheme,
+            ),
+          ),
           home: Wrapper(),
         ),
       ),

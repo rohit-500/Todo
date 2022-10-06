@@ -61,8 +61,7 @@ class _HomeState extends State<Home> {
                       height: 20,
                     ),
                     CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://www.woolha.com/media/2020/03/eevee.png'),
+                      backgroundImage: AssetImage("assets\\dp.png"),
                       radius: 50,
                     ),
                     SizedBox(
@@ -76,30 +75,41 @@ class _HomeState extends State<Home> {
                       color: Colors.white,
                       height: 20,
                     ),
-                    TextButton(
-                        onPressed: () {
-                          setState(() {
-                            if (!pending) pending = true;
-                            
-                          });
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          'Pending',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        )),
-                    TextButton(
-                        onPressed: () {
-                          setState(() {
-                            if (pending) pending = false;
-                          });
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          'Completed',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        )),
+                    TextButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          if (!pending) pending = true;
+                        });
+                        Navigator.pop(context);
+                      },
+                      label: Text(
+                        'Pending',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      icon: Icon(Icons.pending_actions),
+                    ),
+                    Divider(
+                      color: Colors.white,
+                      height: 20,
+                    ),
+                    TextButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          if (pending) pending = false;
+                        });
+                        Navigator.pop(context);
+                      },
+                      label: Text(
+                        'Completed',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      icon: Icon(Icons.done),
+                    ),
+
                     Spacer(), // us
+                    Divider(
+                      color: Colors.white,
+                    ),
                     TextButton.icon(
                         onPressed: () {
                           _auth.signout();
@@ -117,6 +127,9 @@ class _HomeState extends State<Home> {
             body: pending ? todo_list() : CompletedTodo()),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            if (_scaffoldKey.currentState?.isDrawerOpen == true) {
+              _scaffoldKey.currentState?.closeDrawer();
+            }
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => CreateTodo()));
           },
