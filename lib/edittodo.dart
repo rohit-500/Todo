@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:todo/model/tod.dart';
@@ -49,7 +50,6 @@ class _EditTodoState extends State<EditTodo> {
                   height: 20.0,
                 ),
                 TextFormField(
-                  
                   maxLines: null,
                   decoration: textinputdecor,
                   keyboardType: TextInputType.multiline,
@@ -79,6 +79,7 @@ class _EditTodoState extends State<EditTodo> {
                     ),
                     onPressed: () async {
                       if (_formkey.currentState!.validate()) {
+                        SystemChannels.textInput.invokeMethod('TextInput.hide');
                         setState(() {
                           var obj = {
                             'completed': widget.tod.completed,

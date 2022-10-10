@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:todo/services/auth.dart';
@@ -65,9 +66,9 @@ class _CreateTodoState extends State<CreateTodo> {
                       shadowColor: MaterialStateProperty.all(Colors.red),
                     ),
                     onPressed: () async {
+                      SystemChannels.textInput.invokeMethod('TextInput.hide');
                       if (_formkey.currentState!.validate()) {
-                        await DatabaseService(uid: user!.uid)
-                            .createtodo(hascontent);
+                        DatabaseService(uid: user!.uid).createtodo(hascontent);
                         Navigator.pop(context);
                       }
                     },
@@ -82,5 +83,4 @@ class _CreateTodoState extends State<CreateTodo> {
       ),
     );
   }
- 
 }

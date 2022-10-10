@@ -56,7 +56,12 @@ class _TodoTileState extends State<TodoTile> {
             SizedBox(
               height: 10,
             ),
-            Text(widget.prod.content),
+            Text(
+              widget.prod.content,
+              style: TextStyle(
+                decoration: TextDecoration.lineThrough,
+              ),
+            ),
             SizedBox(
               height: 10,
             ),
@@ -65,9 +70,14 @@ class _TodoTileState extends State<TodoTile> {
             IconButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => EditTodo(tod: widget.prod)));
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) =>
+                          EditTodo(tod: widget.prod),
+                      transitionDuration: Duration.zero,
+                      reverseTransitionDuration: Duration.zero,
+                    ),
+                  );
                 },
                 icon: Icon(Icons.edit)),
             IconButton(

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/completedtodo.dart';
@@ -130,8 +131,15 @@ class _HomeState extends State<Home> {
             if (_scaffoldKey.currentState?.isDrawerOpen == true) {
               _scaffoldKey.currentState?.closeDrawer();
             }
+
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => CreateTodo()));
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) => CreateTodo(),
+                transitionDuration: Duration.zero,
+                reverseTransitionDuration: Duration.zero,
+              ),
+            );
           },
           child: Icon(
             Icons.add,
