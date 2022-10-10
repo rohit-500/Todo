@@ -58,9 +58,6 @@ class _TodoTileState extends State<TodoTile> {
             ),
             Text(
               widget.prod.content,
-              style: TextStyle(
-                decoration: TextDecoration.lineThrough,
-              ),
             ),
             SizedBox(
               height: 10,
